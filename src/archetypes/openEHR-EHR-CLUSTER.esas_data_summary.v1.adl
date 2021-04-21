@@ -1,0 +1,260 @@
+archetype (adl_version=1.4; uid=a96236ac-c538-439f-b2d9-a747a131f179)
+	openEHR-EHR-CLUSTER.esas_data_summary.v1
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::nb]>
+	translations = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2021-04-06">
+		["name"] = <"Bjørn Næss">
+		["organisation"] = <"DIPS AS">
+		["email"] = <"bna@dips.no">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"Benyttes for å samle inn tidligere registreringer av ESAS-r. Tiltenkt bruk for å vise historiske data uten å duplisere disse i journalen. Datasettet vil gi beslutningsstøtte og være grunnlag for vurdering av tiltak for pasientens tilstand. ">
+			keywords = <"palliativ, støttedata", ...>
+			use = <"Som bærer av historisk informasjon">
+			misuse = <"Skal ikke brukes som primærregistrering av ESAS-r. ">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			copyright = <"© openEHR Foundation">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"a1443c1bd5f6bb978b968132a1074ef8">
+		["build_uid"] = <"9401aaa9-ff1e-31ed-a6c6-ce60372cf26b">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- ESAS
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0013] occurrences matches {0..1} matches {    -- Tidspunkt
+				value matches {
+					DV_DATE_TIME matches {*}
+				}
+			}
+			ELEMENT[at0001] occurrences matches {0..1} matches {    -- Smerte
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {    -- Slapphet
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			ELEMENT[at0003] occurrences matches {0..1} matches {    -- Døsighet
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			ELEMENT[at0004] occurrences matches {0..1} matches {    -- Kvalme
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			ELEMENT[at0005] occurrences matches {0..1} matches {    -- Nedsatt matlyst
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			ELEMENT[at0006] occurrences matches {0..1} matches {    -- Tung pust
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			ELEMENT[at0007] occurrences matches {0..1} matches {    -- Depresjon
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			ELEMENT[at0008] occurrences matches {0..1} matches {    -- Angst
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			ELEMENT[at0009] occurrences matches {0..1} matches {    -- Velvære
+				value matches {
+					DV_COUNT matches {
+						magnitude matches {|0..10|}
+					}
+				}
+			}
+			CLUSTER[at0010] occurrences matches {0..1} matches {    -- Annet problem
+				items cardinality matches {1..*; unordered} matches {
+					ELEMENT[at0011] occurrences matches {0..1} matches {    -- Navn på problem
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {    -- Vurdering
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..10|}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["nb"] = <
+			items = <
+				["at0000"] = <
+					text = <"ESAS">
+					description = <"Struktur for å bære historiske ESAS scoringer i en registrering.">
+				>
+				["at0001"] = <
+					text = <"Smerte">
+					description = <"Egenrapportert oppfatning av nåværende smerte.">
+				>
+				["at0002"] = <
+					text = <"Slapphet">
+					description = <"Egenrapportert oppfatning av nåværende slapphet eller mangel på krefter.">
+				>
+				["at0003"] = <
+					text = <"Døsighet">
+					description = <"Egenrapportert oppfatning av nåværende døsighet eller søvnighet.">
+				>
+				["at0004"] = <
+					text = <"Kvalme">
+					description = <"Egenrapportert oppfatning av nåværende kvalme.">
+				>
+				["at0005"] = <
+					text = <"Nedsatt matlyst">
+					description = <"Egenrapportert oppfatning av nåværende matlyst.">
+				>
+				["at0006"] = <
+					text = <"Tung pust">
+					description = <"Egenrapportert oppfatning av nåværende tung pust.">
+				>
+				["at0007"] = <
+					text = <"Depresjon">
+					description = <"Egenrapportert oppfatning av nåværende depresjon.">
+				>
+				["at0008"] = <
+					text = <"Angst">
+					description = <"Egenrapportert oppfatning av nåværende angst eller føle seg urolig.">
+				>
+				["at0009"] = <
+					text = <"Velvære">
+					description = <"Egenrapportert oppfatning av nåværende velvære.">
+				>
+				["at0010"] = <
+					text = <"Annet problem">
+					description = <"Annet symptom eller plage.">
+				>
+				["at0011"] = <
+					text = <"Navn på problem">
+					description = <"Navn på problem">
+				>
+				["at0012"] = <
+					text = <"Vurdering">
+					description = <"Egenrapportert oppfatning av nåværende problem.">
+				>
+				["at0013"] = <
+					text = <"Tidspunkt">
+					description = <"Tidspunktet for primærregistreringen.">
+				>
+			>
+		>
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ESAS">
+					description = <"Structure for carrying historical ESAS scores in a record.">
+				>
+				["at0001"] = <
+					text = <"Pain">
+					description = <"">
+				>
+				["at0002"] = <
+					text = <"Tiredness">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Drowsiness">
+					description = <"">
+				>
+				["at0004"] = <
+					text = <"Nausea">
+					description = <"">
+				>
+				["at0005"] = <
+					text = <"Lack of apetite">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Shortness of breath">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Depression">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Anxiety">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Well-being">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Other problem">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Problem name">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Rating">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Time">
+					description = <"">
+				>
+			>
+		>
+	>
