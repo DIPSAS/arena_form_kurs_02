@@ -67,6 +67,26 @@ I tilegg kan det legges inn scope for spørringer. Følgende scope støttes:
 - EpisodeOfCare
 - Folder
 
+### Format og Format Many
+
+```json
+
+"annotations": {​​​​​
+"formatmany": "{​​​​​#bp:/data/events/data/items[at0004]/value/magnitude}​​​​​/{​​​​​#bp:/data/events/data/items[at0005]/value/magnitude}​​​​​ mmHg og {​​​​​#height:/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude}​​​​​ {​​​​​#height:/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/units}​​​​​"
+                }​​​​​,
+
+
+"annotations": {​​​​​
+"format": "{​​​​​#bp:/data/events/data/items[at0004]/value/magnitude}​​​​​/{​​​​​#bp:/data/events/data/items[at0005]/value/magnitude}​​​​​ mmHg og {​​​​​#height:/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude}​​​​​ {​​​​​#height:/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/units}​​​​​"
+                }​​​​​,
+
+
+"annotations": {​​​​​
+"#bp": "select c/uid/value as cid, o from Composition c contains OBSERVATION o[openEHR-EHR-OBSERVATION.blood_pressure.v1] limit 2",
+"#height": "select c/uid/value as cid, o from Composition c contains OBSERVATION o[openEHR-EHR-OBSERVATION.height.v1] limit 2"
+        }​​​​​
+```
+
 ## Bilder som logo
 
 Hvordan sette inn bilder som en overodnet logo på et bilde?
