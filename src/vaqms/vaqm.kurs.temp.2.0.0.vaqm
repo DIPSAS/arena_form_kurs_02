@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<VaqmConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Id="e44f1bbd-811b-4e9e-8e3f-5fff1a86f336" Oid="vaqm.kurs.temp" Name="Temperatur eksempel" Version="2.0.0" Approved="true" CreatedByAuthor="bna" Created="2022-01-18T12:53:42.8372065+01:00" DeletedByAuthor="" Imported="false" VersionComment="Første innsjekk " BasedOnVersion="1.0.0" xmlns="http://www.dips.no/vaqmconfig">
+  <AqlBindings>
+    <AqlBinding Id="913a6ab5-1d2b-4ec6-9470-cf8b784f1ebb" Oid="vaqm.kurs.temp" Name="Temperatur" DefaultArchetypeId="openEHR-EHR-OBSERVATION.body_temperature.v2">
+      <BaseAql>SELECT c,o FROM   COMPOSITION c      CONTAINS OBSERVATION o[openEHR-EHR-OBSERVATION.body_temperature.v2]</BaseAql>
+      <Paths>
+        <Path Id="Temp" IdentifierRef="o" Value="/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value" DataType="DV_QUANTITY" />
+        <Path Id="KroppsEskponering" IdentifierRef="o" Value="/data[at0002]/events[at0003]/state[at0029]/items[at0030]/value" AdminDescription="" DataType="DV_CODED_TEXT" />
+        <Path Id="Time" IdentifierRef="o" Value="/data[at0002]/events[at0003]/time" AdminDescription="" DataType="DV_DATE_TIME" />
+        <Path Id="ctxStartTIme" IdentifierRef="c" Value="/context/start_time" AdminDescription="" DataType="DV_DATE_TIME" />
+      </Paths>
+      <WhereExpressions>
+        <WhereExpression Id="Gt30" Path="$Temp/magnitude" Operator="GT" Value="30" AdminDescription="" />
+      </WhereExpressions>
+      <OrderByExpressions>
+        <OrderByExpression Id="last" Value="$Time/value" Ascending="false" />
+      </OrderByExpressions>
+      <Predicates>
+        <Predicate Id="lastTemp" WhereRef="" OrderByRef="$last" />
+      </Predicates>
+      <KeyValues />
+    </AqlBinding>
+  </AqlBindings>
+  <DataElements>
+    <DataElement Id="dbaca696-7e6b-4b2d-aff2-b7f3cb547e7b" Oid="vaqm.kurs.temp" Name="Temperatur" AdminName="Temp Kurs Eksempel " Description="Siste temperatur for pasienten" Categories="kurs" DisplayFormat="$lastTemp.KroppsEskponering/value $lastTemp.Temp/magnitude " SortFormat="$lastTemp.Temp/magnitude" IsEditable="true" XFormat="" YFormat="" RangeFormat="">
+      <FormatExpressions>
+        <FormatExpression Id="74d03389-df08-4f9b-a15b-92e6c912b1e7">
+          <WhenExpression Value="$lastTemp.Temp/magnitude &gt; 38" AdminDescription="" />
+          <AlertType>CUSTOM</AlertType>
+          <AlertTypeForegroundColor>#FFFFFFFF</AlertTypeForegroundColor>
+          <AlertTypeBackgroundColor>#FFC95E5E</AlertTypeBackgroundColor>
+          <Symbol>M17 3H21V5H17V3M17 7H21V9H17V7M17 11H21V13H17.75L17 12.1V11M21 15V17H19C19 16.31 18.9 15.63 18.71 15H21M7 3V5H3V3H7M7 7V9H3V7H7M7 11V12.1L6.25 13H3V11H7M3 15H5.29C5.1 15.63 5 16.31 5 17H3V15M15 13V5C15 3.34 13.66 2 12 2S9 3.34 9 5V13C6.79 14.66 6.34 17.79 8 20S12.79 22.66 15 21 17.66 16.21 16 14C15.72 13.62 15.38 13.28 15 13M12 4C12.55 4 13 4.45 13 5V8H11V5C11 4.45 11.45 4 12 4Z</Symbol>
+          <SymbolType>Geometry</SymbolType>
+          <SymbolForegroundColor>#000000</SymbolForegroundColor>
+          <AdminDescription />
+          <Description>Temperatur er over 38 </Description>
+        </FormatExpression>
+      </FormatExpressions>
+      <KeyValues>
+        <KeyValue Key="DocumentCreateConceptId" Value="$ARENA-HEALTHRECORD-DOCUMENTCONCEPT/VitalsignTemperature" AdminDescription="" />
+      </KeyValues>
+    </DataElement>
+  </DataElements>
+  <KeyValues />
+</VaqmConfiguration>
